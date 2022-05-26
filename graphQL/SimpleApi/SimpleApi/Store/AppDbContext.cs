@@ -14,6 +14,10 @@ public class AppDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Project>()
+            .HasMany(c => c.TimeLogs)
+            .WithOne(e => e.Project);
+        
         modelBuilder.Entity<Project>().HasData(new Project
         {
             CreatedBy = "Giorgi",
